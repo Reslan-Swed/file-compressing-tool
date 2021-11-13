@@ -1,0 +1,127 @@
+.root {
+    -fx-background-color: #2D2A2E;
+    /*FCFCFA*/
+    /*        2D2A2E*/
+    /*        E91E63*/
+    /*        AB9DF2*/
+    /*        D33682*/
+    /*FFC107*/
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #42A5F5;
+}
+
+.jfx-tab-pane .headers-region .tab-selected-line {
+    -fx-background-color: #FCFCFA;
+}
+
+.jfx-tab-pane .headers-region > .tab > .jfx-rippler {
+    -jfx-rippler-fill: #FCFCFA;
+}
+
+.jfx-tab-pane .headers-region .tab .tab-container .tab-label {
+    -fx-text-fill: #2D2A2E;
+}
+
+.jfx-tab-pane .headers-region .tab:selected .tab-container .tab-label {
+    -fx-text-fill: #FCFCFA;
+}
+
+.jfx-tab-pane .headers-region .tab .tab-container .tab-label .glyph-icon {
+    -fx-fill: #2D2A2E;
+    -glyph-size: 20px;
+}
+
+.jfx-tab-pane .headers-region .tab:selected .tab-container .tab-label .glyph-icon {
+    -fx-fill: #FCFCFA;
+    -glyph-size: 20px;
+}
+
+.text-field {
+    -fx-background-color: transparent, #D3DAE3;
+    -fx-background-radius: 13;
+    -fx-text-inner-color: #2D2A2E;
+}
+
+.glyph-icon {
+    -fx-fill: #2D2A2E;
+}
+
+.text-field:focused {
+    -fx-focus-color: #FCFCFA;
+}
+
+.jfx-radio-button {
+    -jfx-selected-color: #42A5F5;
+    -jfx-unselected-color: #FCFCFA;
+}
+
+.jfx-radio-button .text {
+    -fx-fill: #FCFCFA;
+}
+
+.label {
+    -fx-text-fill: #FCFCFA;
+}
+
+.check {
+    -fx-fill: #00C68E;
+    -glyph-size: 30px;
+}
+
+.error {
+    -fx-fill: #E91E63;
+    -glyph-size: 30px;
+}
+
+.status-bar{
+    /*-fx-background-color: #42A5F5;*/
+    -fx-border-color: #42A5F5 transparent transparent transparent;
+}
+
+.path-field .jfx-button {
+    -fx-background-color: transparent;
+    -fx-rippler-fill: #42A5F5;
+}
+
+.jfx-button {
+    -fx-background-color: #42A5F5;
+    -fx-text-fill: #FCFCFA;
+    -fx-rippler-fill: #FCFCFA;
+}
+
+.jfx-spinner:determinate .arc{
+    -fx-stroke: #42A5F5;
+}
+
+.jfx-spinner:determinate .percentage{
+    -fx-fill: transparent;
+}
+
+.hyperlink {
+    -fx-border-color: transparent;
+    -fx-text-fill: #42A5F5;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #BBBBBB;
+    -fx-underline: true;
+}
+
+.jfx-progress-bar > .track{
+    -fx-background-color: rgba(66, 165, 245, 0.25);
+}
+
+.jfx-progress-bar > .bar,
+.jfx-progress-bar:indeterminate > .bar{
+    -fx-background-color: #42A5F5;
+}
+
+.jfx-progress-bar > .secondary-bar,
+.jfx-progress-bar:indeterminate > .secondary-bar{
+    -fx-background-color: rgba(66, 165, 245, 0.7);
+}
+
+
+

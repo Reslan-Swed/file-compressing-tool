@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="425.0" prefWidth="650.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+   <center>
+      <JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35.0" tabMaxWidth="135.0">
+         <tabs>
+            <Tab closable="false" text="Compress">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="COMPRESS" size="20" />
+               </graphic>
+               <content>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <GridPane alignment="CENTER" vgap="10.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="75.0" prefWidth="75.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="350.0" prefWidth="350.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="File Path" />
+                              <Label text="Save As" GridPane.rowIndex="1" />
+                              <StackPane alignment="CENTER_RIGHT" styleClass="path-field" GridPane.columnIndex="1">
+                                 <children>
+                                    <TextField fx:id="compressSelectionField" editable="false" prefHeight="25.0" prefWidth="300.0">
+                                       <padding>
+                                          <Insets left="20.0" right="56.0" />
+                                       </padding>
+                                    </TextField>
+                                    <HBox alignment="CENTER" maxWidth="50.0" prefHeight="25.0" prefWidth="50.0">
+                                       <children>
+                                          <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#onCompressOpenFolderHandler" prefWidth="28.0">
+                                             <tooltip>
+                                                <Tooltip text="Open" />
+                                             </tooltip>
+                                             <graphic>
+                                                <MaterialDesignIconView glyphName="FOLDER_OUTLINE" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#onCompressOpenFileHandler" prefWidth="28.0" style="-fx-background-radius: 0 13 13 0;">
+                                             <tooltip>
+                                                <Tooltip text="Open" />
+                                             </tooltip>
+                                             <graphic>
+                                                <MaterialDesignIconView glyphName="FILE_OUTLINE" />
+                                             </graphic>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                              <StackPane alignment="CENTER_RIGHT" styleClass="path-field" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="compressSavingField" editable="false" prefHeight="25.0" prefWidth="300.0">
+                                       <padding>
+                                          <Insets left="20.0" right="30.0" />
+                                       </padding>
+                                    </TextField>
+                                    <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#onCompressSaveAsHandler" prefWidth="30.0" style="-fx-background-radius: 0 13 13 0;">
+                                       <graphic>
+                                          <FontAwesomeIconView glyphName="SAVE" />
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Choose Path" />
+                                       </tooltip>
+                                    </JFXButton>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Compression Type" />
+                              <JFXRadioButton fx:id="compressTypeRle" selected="true" text="RLE">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="compressTypeToggles" />
+                                 </toggleGroup>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="compressTypeHuffman" layoutX="225.0" layoutY="52.0" text="Huffman" toggleGroup="$compressTypeToggles" />
+                              <JFXRadioButton fx:id="compressTypeAHuffman" layoutX="272.0" layoutY="52.0" text="Adaptive Huffman" toggleGroup="$compressTypeToggles" />
+                              <JFXRadioButton fx:id="compressTypeLz77" layoutX="318.0" layoutY="52.0" text="LZ77" toggleGroup="$compressTypeToggles" />
+                              <JFXRadioButton fx:id="compressTypeLzw" layoutX="365.0" layoutY="52.0" text="LZW" toggleGroup="$compressTypeToggles" />
+                           </children>
+                        </HBox>
+                        <JFXButton fx:id="compressButton" buttonType="RAISED" onAction="#onCompressStartHandler" text="Compress" />
+                        <HBox fx:id="compressResultBar" alignment="CENTER" prefHeight="50.0" spacing="10.0" visible="false">
+                           <children>
+                              <MaterialDesignIconView glyphName="CHECK" size="10" styleClass="check" />
+                              <Label text="Compress Completed - Compression Ratio" />
+                              <StackPane>
+                                 <children>
+                                    <JFXSpinner fx:id="compressRatioProgress" progress="1.0" />
+                                    <Label fx:id="compressRatioPercentage" alignment="CENTER" text="100%" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Decompress">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="EXPAND" size="20" />
+               </graphic>
+               <content>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <GridPane alignment="CENTER" vgap="10.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="75.0" prefWidth="75.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="350.0" prefWidth="350.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="File Path" />
+                              <Label text="Extract To" GridPane.rowIndex="1" />
+                              <StackPane alignment="CENTER_RIGHT" styleClass="path-field" GridPane.columnIndex="1">
+                                 <children>
+                                    <TextField fx:id="decompressSelectionField" editable="false" prefHeight="25.0" prefWidth="300.0">
+                                       <padding>
+                                          <Insets left="20.0" right="30.0" />
+                                       </padding>
+                                    </TextField>
+                                    <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#onDecompressOpenFileHandler" prefWidth="30.0" style="-fx-background-radius: 0 13 13 0;">
+                                       <graphic>
+                                          <FontAwesomeIconView glyphName="FOLDER_OPEN_ALT" />
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Open" />
+                                       </tooltip>
+                                    </JFXButton>
+                                 </children>
+                              </StackPane>
+                              <StackPane alignment="CENTER_RIGHT" styleClass="path-field" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="decompressExtractionField" editable="false" prefHeight="25.0" prefWidth="300.0">
+                                       <padding>
+                                          <Insets left="20.0" right="30.0" />
+                                       </padding>
+                                    </TextField>
+                                    <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#onDecompressExtractToHandler" prefWidth="30.0" style="-fx-background-radius: 0 13 13 0;">
+                                       <graphic>
+                                          <FontAwesomeIconView glyphName="EXTERNAL_LINK" />
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="open" />
+                                       </tooltip>
+                                    </JFXButton>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </GridPane>
+                        <JFXButton fx:id="decompressButton" buttonType="RAISED" onAction="#onDecompressStartHandler" text="Decompress" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" maxHeight="650.0" prefHeight="25.0" spacing="5.0" styleClass="status-bar">
+         <children>
+            <Label fx:id="statusLabel" maxWidth="200.0" text="Ready" wrapText="true" />
+            <Hyperlink fx:id="statusLink" maxWidth="250.0" />
+            <JFXProgressBar fx:id="statusProgressBar" maxWidth="200.0" visible="false" />
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>
